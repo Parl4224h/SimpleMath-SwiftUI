@@ -25,6 +25,7 @@ final class TimedBrain: ObservableObject {
     @Published var difficulty: Difficulty = .easy
     @Published var isVisible: Bool = false
     @Published var isOver: Bool = false
+    @Published var endVisible: Bool = false
     // Add vars for final results
     
     // MARK: PRIVATE VARIABLES
@@ -41,6 +42,7 @@ final class TimedBrain: ObservableObject {
     private var hints = 0
     private var hintUsed = false
     private var display: String = ""
+    private var timeRemainingConstant: Int = 0
     
     init() {
         start = DispatchTime.now().uptimeNanoseconds
@@ -63,22 +65,31 @@ final class TimedBrain: ObservableObject {
     }
     
     public func closeEndScreen() {
-        isOver = false
-        reset()
+        endVisible = false
     }
     
     public func Submit() {
-        checkAnswer()
+        if isOver {
+            timeRemaining = timeRemainingConstant
+            questionText = nextQuestion()
+            reset()
+            isOver = false
+            answerText = ""
+        }else{
+            checkAnswer()
+        }
     }
     
     public func gameOver() {
         questionText = "Press Submit to Play Again"
         isOver = true
+        endVisible = true
     }
     
     public func viewAppear(time: Int) {
         reset()
         timeRemaining = time
+        timeRemainingConstant = 10
         isVisible = true
         isOver = false
         questionText = nextQuestion()
@@ -94,7 +105,77 @@ final class TimedBrain: ObservableObject {
     
     // MARK: PRIVATE FUNCTIONS
     private func checkAnswer() {
-        
+        var remaining = 0.25
+        let a = Int(answerText) ?? -1
+        let ans:Int
+        if (a == -1){
+            answerText = "Invalid Answer"
+            answerColor = SwiftUI.Color.yellow
+            answerTextColor = SwiftUI.Color.black
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){(Timer) in
+                if(remaining <= 0){
+                    self.answerText = ""
+                    Timer.invalidate()
+                    self.answerColor = SwiftUI.Color.black
+                    self.answerTextColor = SwiftUI.Color.white
+                } else{
+                    remaining -= 0.25
+                }
+            }
+        }else{
+            if (currentRegular != nil){
+                ans = currentRegular!.answer
+            } else {
+                ans = currentSquare!.answer
+            }
+            if (a == ans){
+                if (hintUsed){
+                    withHint += 1
+                } else{
+                    correct += 1
+                    streakSmall += 1
+                }
+                if(streakSmall > streakLarge){
+                    streakLarge = streakSmall
+                }
+                answerText = "Correct"
+                answerColor = SwiftUI.Color.green
+                answerTextColor = SwiftUI.Color.black
+                Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){(Timer) in
+                    if(remaining <= 0){
+                        Timer.invalidate()
+                        self.answerText = ""
+                        self.answerColor = SwiftUI.Color.black
+                        self.answerTextColor = SwiftUI.Color.white
+                    } else{
+                        remaining -= 0.25
+                    }
+                }
+                display = ""
+                hints = 0
+                hintUsed = false
+                correctSmall = correct
+                correctLarge = correct + incorrect + withHint
+                percentCorrect = Float(correct) / Float(correct+incorrect+withHint)
+                questionText = nextQuestion()
+            } else {
+                streakSmall = 0
+                answerText = "Incorrect"
+                answerColor = SwiftUI.Color.red
+                answerTextColor = SwiftUI.Color.black
+                Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){(Timer) in
+                    if(remaining <= 0){
+                        self.answerText = ""
+                        self.answerColor = SwiftUI.Color.black
+                        self.answerTextColor = SwiftUI.Color.white
+                        Timer.invalidate()
+                    } else{
+                        remaining -= 0.25
+                    }
+                }
+                display = ""
+            }
+        }
     }
     
     private func reset() {
@@ -108,7 +189,6 @@ final class TimedBrain: ObservableObject {
         //defaults.set(streakLarge, forKey: keys[difficulty])
         streakLarge = 0
         start = DispatchTime.now().uptimeNanoseconds
-        timeRemaining = 0
     }
     
     private func nextQuestion() -> String {

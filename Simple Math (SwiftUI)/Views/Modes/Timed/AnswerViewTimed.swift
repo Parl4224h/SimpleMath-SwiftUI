@@ -35,18 +35,16 @@ struct AnswerViewTimed: View {
                     .background(Color.green)
                     .cornerRadius(10)
             }
-            .onReceive(timer) {_ in
-                print("Here")
-            }
             .padding()
             
-            Text("Time Remaining: \(brain.timeRemaining) Seconds")
+            Text("Time Remaining: \(brain.timeRemaining < 0 ? 0 : brain.timeRemaining) Seconds")
                 .onReceive(timer) {_ in
                     if (brain.timeRemaining > 0){
                         brain.timeRemaining -= 1
-                    } else {
-                        self.timer.upstream.connect().cancel()
+                    } else if (brain.timeRemaining == 0){
+                        brain.timeRemaining -= 1
                         if (brain.isVisible) {
+                            print("\(brain.timeRemaining)")
                             brain.gameOver()
                         }
                     }

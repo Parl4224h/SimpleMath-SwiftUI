@@ -22,7 +22,7 @@ struct GameViewTimed: View {
                 Spacer()
                 
             }
-            if ($brain.isOver.wrappedValue) {
+            if ($brain.endVisible.wrappedValue) {
                 GameOverTimed()
             }
         }
