@@ -43,7 +43,9 @@ struct AnswerViewTimed: View {
                         brain.timeRemaining -= 1
                     } else {
                         self.timer.upstream.connect().cancel()
-                        brain.endGame()
+                        if (brain.isVisible) {
+                            brain.gameOver()
+                        }
                     }
                 }
         }

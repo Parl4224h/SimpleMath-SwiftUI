@@ -11,15 +11,20 @@ struct GameViewTimed: View {
     @EnvironmentObject var brain: TimedBrain
     
     var body: some View {
-        VStack {
-            StatsViewTimed()
-                .padding(.bottom,25)
-                .padding(.top, 0)
-            
-            AnswerViewTimed()
-            
-            Spacer()
-            
+        ZStack{
+            VStack {
+                StatsViewTimed()
+                    .padding(.bottom,25)
+                    .padding(.top, 0)
+                
+                AnswerViewTimed()
+                
+                Spacer()
+                
+            }
+            if ($brain.isOver.wrappedValue) {
+                GameOverTimed()
+            }
         }
     }
 }

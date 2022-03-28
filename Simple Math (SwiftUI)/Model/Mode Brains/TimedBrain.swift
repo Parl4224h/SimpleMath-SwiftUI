@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+//TODO: Add Streak Save implement in JSON correctly once know how
+
 final class TimedBrain: ObservableObject {
     // MARK: PUBLISHED VARIABLES
     @Published var timeRemaining = 10
@@ -21,6 +23,9 @@ final class TimedBrain: ObservableObject {
     @Published var answerColor = SwiftUI.Color.black
     @Published var answerTextColor = SwiftUI.Color.white
     @Published var difficulty: Difficulty = .easy
+    @Published var isVisible: Bool = false
+    @Published var isOver: Bool = false
+    // Add vars for final results
     
     // MARK: PRIVATE VARIABLES
     private var currentRegular:equation?
@@ -35,7 +40,7 @@ final class TimedBrain: ObservableObject {
     private var valid = false
     private var hints = 0
     private var hintUsed = false
-    private var display:String = ""
+    private var display: String = ""
     
     init() {
         start = DispatchTime.now().uptimeNanoseconds
@@ -43,10 +48,7 @@ final class TimedBrain: ObservableObject {
     }
     
     // MARK: PUBLIC FUNCTIONS
-    public func setDifficulty(_ diff: Difficulty){
-        difficulty = diff
-    }
-    
+
     public func Hint() {
         answerText = useHint()
         var remaining = 2.0
@@ -64,16 +66,26 @@ final class TimedBrain: ObservableObject {
         checkAnswer()
     }
     
-    public func endGame() {
-        print("HERE")
+    public func gameOver() {
+        answerText = "Press Submit to Play Again"
+        isOver = true
     }
     
-    public func setTimer(_ time: Int) {
+    public func viewAppear(time: Int) {
         reset()
         timeRemaining = time
+        isVisible = true
+        isOver = false
         questionText = nextQuestion()
-        //streakLarge = defaults.integer(forKey: keys[difficulty + 5])
     }
+    
+    public func viewDisappear() {
+        reset()
+        timeRemaining = 0
+        isVisible = false
+        questionText = nextQuestion()
+    }
+
     
     // MARK: PRIVATE FUNCTIONS
     private func checkAnswer() {
@@ -96,12 +108,11 @@ final class TimedBrain: ObservableObject {
     
     private func nextQuestion() -> String {
         switch(difficulty) {
-//        case 0: return easyQuestion()
-//        case 1: return mediumQuestion()
-//        case 2: return hardQuestion()
-//        case 3: return squareQuestion()
-//        case 4: return extremeQuestion()
-        default: return easyQuestion()
+        case Difficulty.easy: return easyQuestion()
+        case Difficulty.medium: return mediumQuestion()
+        case Difficulty.hard: return hardQuestion()
+        case Difficulty.squares: return squareQuestion()
+        case Difficulty.extreme: return extremeQuestion()
         }
     }
     

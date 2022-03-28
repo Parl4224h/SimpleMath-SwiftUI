@@ -12,7 +12,6 @@
 		AB2C91AC27ECBC2000D21A3E /* GameViewTimed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C91AB27ECBC2000D21A3E /* GameViewTimed.swift */; };
 		AB2C91AE27ECBCBB00D21A3E /* GameOverTimed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C91AD27ECBCBB00D21A3E /* GameOverTimed.swift */; };
 		AB2C91B027ECC85400D21A3E /* DifficultyPickerTimed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C91AF27ECC85400D21A3E /* DifficultyPickerTimed.swift */; };
-		AB2C91B227ECC8A500D21A3E /* TimesViewTimed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C91B127ECC8A500D21A3E /* TimesViewTimed.swift */; };
 		AB2EF9A027E214CC007AD225 /* EndlessBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2EF99F27E214CC007AD225 /* EndlessBrain.swift */; };
 		AB358CFE27DFB84A00A6DB1F /* AnswerViewEndless.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB358CFD27DFB84A00A6DB1F /* AnswerViewEndless.swift */; };
 		AB358D0027DFB92A00A6DB1F /* StatsViewEndless.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB358CFF27DFB92A00A6DB1F /* StatsViewEndless.swift */; };
@@ -38,7 +37,6 @@
 		AB2C91AB27ECBC2000D21A3E /* GameViewTimed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewTimed.swift; sourceTree = "<group>"; };
 		AB2C91AD27ECBCBB00D21A3E /* GameOverTimed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverTimed.swift; sourceTree = "<group>"; };
 		AB2C91AF27ECC85400D21A3E /* DifficultyPickerTimed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyPickerTimed.swift; sourceTree = "<group>"; };
-		AB2C91B127ECC8A500D21A3E /* TimesViewTimed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesViewTimed.swift; sourceTree = "<group>"; };
 		AB2EF99F27E214CC007AD225 /* EndlessBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessBrain.swift; sourceTree = "<group>"; };
 		AB358CFD27DFB84A00A6DB1F /* AnswerViewEndless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewEndless.swift; sourceTree = "<group>"; };
 		AB358CFF27DFB92A00A6DB1F /* StatsViewEndless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewEndless.swift; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 				AB2C91AB27ECBC2000D21A3E /* GameViewTimed.swift */,
 				AB2C91AD27ECBCBB00D21A3E /* GameOverTimed.swift */,
 				AB2C91AF27ECC85400D21A3E /* DifficultyPickerTimed.swift */,
-				AB2C91B127ECC8A500D21A3E /* TimesViewTimed.swift */,
 			);
 			path = Timed;
 			sourceTree = "<group>";
@@ -270,7 +267,6 @@
 				ABE241DE27EC9D6900858474 /* MaxBrain.swift in Sources */,
 				AB2EF9A027E214CC007AD225 /* EndlessBrain.swift in Sources */,
 				AB5A7C1D27EC14E6009C70ED /* MaxQuestionsView.swift in Sources */,
-				AB2C91B227ECC8A500D21A3E /* TimesViewTimed.swift in Sources */,
 				AB358D0427DFC9A100A6DB1F /* CircularPercentageBar.swift in Sources */,
 				ABE241E127ECA01600858474 /* UniversalAccess.swift in Sources */,
 				AB358CFE27DFB84A00A6DB1F /* AnswerViewEndless.swift in Sources */,
