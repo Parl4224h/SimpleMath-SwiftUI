@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AnswerViewTimed: View {
     @EnvironmentObject var brain: TimedBrain
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
@@ -34,6 +34,9 @@ struct AnswerViewTimed: View {
                     .padding()
                     .background(Color.green)
                     .cornerRadius(10)
+            }
+            .onReceive(timer) {_ in
+                print("Here")
             }
             .padding()
             

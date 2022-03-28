@@ -8,27 +8,38 @@
 import SwiftUI
 // TODO: Make a game over screen
 struct GameOverTimed: View {
+    @EnvironmentObject var brain: TimedBrain
+    
     var body: some View {
         VStack (spacing : 10) {
-               Text("Choices Of Fruits").font(Font.custom("Avenir-Black", size: 18.0))
-               Button(action: {
-                   withAnimation {
-                    }
-                }, label: {
-                    Text("Close")
-                })
+            Text("Game Over")
+                .font(.title)
             
+            Text("Total Questions Answered: \(brain.correctLarge)")
+            Text("Correct Questions: \(brain.correctSmall)")
+            Text("Longest Streak: \(brain.streakSmall)")
+            Text("Record Streak: \(brain.streakLarge)")
+            
+            Spacer()
+            
+            Button("Close", action: close)
             }
             .padding()
-            .frame(width: 300, height: 500)
+            .frame(width: 300, height: 250)
             .background(Color("Background"))
             .cornerRadius(20)
             .shadow(radius: 20)
+    }
+    
+    func close(){
+        brain.closeEndScreen()
     }
 }
 
 struct GameOverTimed_Previews: PreviewProvider {
     static var previews: some View {
+        let brain: TimedBrain = TimedBrain()
         GameOverTimed()
+            .environmentObject(brain)
     }
 }

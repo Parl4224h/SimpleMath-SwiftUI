@@ -62,12 +62,17 @@ final class TimedBrain: ObservableObject {
         }
     }
     
+    public func closeEndScreen() {
+        isOver = false
+        reset()
+    }
+    
     public func Submit() {
         checkAnswer()
     }
     
     public func gameOver() {
-        answerText = "Press Submit to Play Again"
+        questionText = "Press Submit to Play Again"
         isOver = true
     }
     
