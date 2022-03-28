@@ -10,50 +10,19 @@ import SwiftUI
 struct TimedView: View {
     @EnvironmentObject var brain: TimedBrain
     
+    let times = [10, 20, 30, 40, 50, 60]
+    
     var body: some View {
         NavigationView{
             List{
-                NavigationLink {
-                    GameViewTimed()
-                        .onAppear(perform: {brain.viewAppear(time: 10)})
-                        .onDisappear(perform: {brain.viewDisappear()})
-                } label: {
-                    Text("10 Seconds")
-                }
-                NavigationLink {
-                    GameViewTimed()
-                        .onAppear(perform: {brain.viewAppear(time: 20)})
-                        .onDisappear(perform: {brain.viewDisappear()})
-                } label: {
-                    Text("20 Seconds")
-                }
-                NavigationLink {
-                    GameViewTimed()
-                        .onAppear(perform: {brain.viewAppear(time: 30)})
-                        .onDisappear(perform: {brain.viewDisappear()})
-                } label: {
-                    Text("30 Seconds")
-                }
-                NavigationLink {
-                    GameViewTimed()
-                        .onAppear(perform: {brain.viewAppear(time: 40)})
-                        .onDisappear(perform: {brain.viewDisappear()})
-                } label: {
-                    Text("40 Seconds")
-                }
-                NavigationLink {
-                    GameViewTimed()
-                        .onAppear(perform: {brain.viewAppear(time: 50)})
-                        .onDisappear(perform: {brain.viewDisappear()})
-                } label: {
-                    Text("50 Seconds")
-                }
-                NavigationLink {
-                    GameViewTimed()
-                        .onAppear(perform: {brain.viewAppear(time: 60)})
-                        .onDisappear(perform: {brain.viewDisappear()})
-                } label: {
-                    Text("60 Seconds")
+                ForEach(times, id: \.hashValue) { value in
+                    NavigationLink {
+                        GameViewTimed()
+                            .onAppear(perform: {brain.viewAppear(time: value)})
+                            .onDisappear(perform: {brain.viewDisappear()})
+                    } label: {
+                        Text("\(value) Seconds")
+                    }
                 }
             }
             .navigationTitle("Time")

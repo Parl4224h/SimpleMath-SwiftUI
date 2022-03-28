@@ -1,14 +1,14 @@
 //
-//  GameOverTimed.swift
+//  GameOverMaxQ.swift
 //  Simple Math (SwiftUI)
 //
-//  Created by Parker Hoffmann on 3/24/22.
+//  Created by Parker Hoffmann on 3/28/22.
 //
 
 import SwiftUI
-// TODO: Make a game over screen
-struct GameOverTimed: View {
-    @EnvironmentObject var brain: TimedBrain
+
+struct GameOverMaxQ: View {
+    @EnvironmentObject var brain: MaxBrain
     
     var body: some View {
         VStack (spacing : 10) {
@@ -36,10 +36,10 @@ struct GameOverTimed: View {
     }
 }
 
-struct GameOverTimed_Previews: PreviewProvider {
+struct GameOverMaxQ_Previews: PreviewProvider {
     static var previews: some View {
-        let brain: TimedBrain = TimedBrain()
-        GameOverTimed()
+        let brain = MaxBrain()
+        GameOverMaxQ()
             .environmentObject(brain)
     }
 }

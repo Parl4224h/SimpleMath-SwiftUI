@@ -28,9 +28,9 @@ struct Keys{
 
 
 let defaults = UserDefaults.standard
-let keys = [Keys.easyStreak, Keys.mediumStreak, Keys.hardStreak, Keys.squareStreak, Keys.extremeStreak,
-           Keys.easyStreakTimed, Keys.mediumStreakTimed, Keys.hardStreakTimed, Keys.squareStreakTimed, Keys.extremeStreakTimed,
-           Keys.easyStreakMaxQ, Keys.mediumStreakMaxQ, Keys.hardStreakMaxQ, Keys.squareStreakMaxQ, Keys.extremeStreakMaxQ]
+let keysEndless = [Keys.easyStreak, Keys.mediumStreak, Keys.hardStreak, Keys.squareStreak, Keys.extremeStreak]
+let keysTimed = [Keys.easyStreakTimed, Keys.mediumStreakTimed, Keys.hardStreakTimed, Keys.squareStreakTimed, Keys.extremeStreakTimed]
+let keysMaxQ = [Keys.easyStreakMaxQ, Keys.mediumStreakMaxQ, Keys.hardStreakMaxQ, Keys.squareStreakMaxQ, Keys.extremeStreakMaxQ]
 
 enum Difficulty: String, CaseIterable, Identifiable {
     case easy, medium, hard, squares, extreme

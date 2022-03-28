@@ -1,14 +1,14 @@
 //
-//  AnswerViewTimed.swift
+//  AnswerViewMaxQ.swift
 //  Simple Math (SwiftUI)
 //
-//  Created by Parker Hoffmann on 3/24/22.
+//  Created by Parker Hoffmann on 3/28/22.
 //
 
 import SwiftUI
 
-struct AnswerViewTimed: View {
-    @EnvironmentObject var brain: TimedBrain
+struct AnswerViewMaxQ: View {
+    @EnvironmentObject var brain: MaxBrain
     @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -59,10 +59,10 @@ struct AnswerViewTimed: View {
     }
 }
 
-struct AnswerViewTimed_Previews: PreviewProvider {
+struct AnswerViewMaxQ_Previews: PreviewProvider {
     static var previews: some View {
-        let brain: TimedBrain = TimedBrain()
-        AnswerViewTimed()
+        let brain = MaxBrain()
+        AnswerViewMaxQ()
             .environmentObject(brain)
     }
 }

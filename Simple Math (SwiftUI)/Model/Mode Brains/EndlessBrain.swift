@@ -47,7 +47,7 @@ final class EndlessBrain: ObservableObject {
         reset()
         difficulty = diff
         questionText = nextQuestion()
-        streakLarge = defaults.integer(forKey: keys[difficulty])
+        streakLarge = defaults.integer(forKey: keysEndless[difficulty])
     }
     
     public func Hint() {
@@ -76,7 +76,7 @@ final class EndlessBrain: ObservableObject {
         correctSmall = 0
         correctLarge = 0
         percentCorrect = 0.0
-        defaults.set(streakLarge, forKey: keys[difficulty])
+        defaults.set(streakLarge, forKey: keysEndless[difficulty])
         streakLarge = 0
         start = DispatchTime.now().uptimeNanoseconds
         responseTime = 0
@@ -116,7 +116,7 @@ final class EndlessBrain: ObservableObject {
                 }
                 if(streakSmall > streakLarge){
                     streakLarge = streakSmall
-                    defaults.set(streakLarge, forKey: keys[difficulty])
+                    defaults.set(streakLarge, forKey: keysEndless[difficulty])
                 }
                 answerText = "Correct"
                 answerColor = SwiftUI.Color.green

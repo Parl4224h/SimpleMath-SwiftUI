@@ -1,14 +1,14 @@
 //
-//  StatsViewTimed.swift
+//  StatsViewMaxQ.swift
 //  Simple Math (SwiftUI)
 //
-//  Created by Parker Hoffmann on 3/24/22.
+//  Created by Parker Hoffmann on 3/28/22.
 //
 
 import SwiftUI
 
-struct StatsViewTimed: View {
-    @EnvironmentObject var brain: TimedBrain
+struct StatsViewMaxQ: View {
+    @EnvironmentObject var brain: MaxBrain
     
     var body: some View {
         
@@ -31,10 +31,8 @@ struct StatsViewTimed: View {
     }
 }
 
-struct StatsViewTimed_Previews: PreviewProvider {
+struct StatsViewMaxQ_Previews: PreviewProvider {
     static var previews: some View {
-        let brain: TimedBrain = TimedBrain()
-        StatsViewTimed()
-            .environmentObject(brain)
+        StatsViewMaxQ()
     }
 }

@@ -15,8 +15,8 @@ final class TimedBrain: ObservableObject {
     @Published var timeRemaining = 10
     @Published var answerText = ""
     @Published var percentCorrect: Float = 0.0
-    @Published var streakSmall: Int = 0
-    @Published var streakLarge: Int = 0
+    @Published var currentCorrectSmall: Int = 0
+    @Published var currentCorrecLarge: Int = 0
     @Published var correctSmall: Int = 0
     @Published var correctLarge: Int = 0
     @Published var questionText: String = ""
@@ -26,7 +26,6 @@ final class TimedBrain: ObservableObject {
     @Published var isVisible: Bool = false
     @Published var isOver: Bool = false
     @Published var endVisible: Bool = false
-    // Add vars for final results
     
     // MARK: PRIVATE VARIABLES
     private var currentRegular:equation?
@@ -89,7 +88,7 @@ final class TimedBrain: ObservableObject {
     public func viewAppear(time: Int) {
         reset()
         timeRemaining = time
-        timeRemainingConstant = 10
+        timeRemainingConstant = time
         isVisible = true
         isOver = false
         questionText = nextQuestion()
@@ -133,10 +132,10 @@ final class TimedBrain: ObservableObject {
                     withHint += 1
                 } else{
                     correct += 1
-                    streakSmall += 1
+                    currentCorrectSmall += 1
                 }
-                if(streakSmall > streakLarge){
-                    streakLarge = streakSmall
+                if(currentCorrectSmall > currentCorrecLarge){
+                    currentCorrecLarge = currentCorrectSmall
                 }
                 answerText = "Correct"
                 answerColor = SwiftUI.Color.green
@@ -159,7 +158,7 @@ final class TimedBrain: ObservableObject {
                 percentCorrect = Float(correct) / Float(correct+incorrect+withHint)
                 questionText = nextQuestion()
             } else {
-                streakSmall = 0
+                currentCorrectSmall = 0
                 answerText = "Incorrect"
                 answerColor = SwiftUI.Color.red
                 answerTextColor = SwiftUI.Color.black
@@ -182,12 +181,12 @@ final class TimedBrain: ObservableObject {
         correct = 0
         incorrect = 0
         withHint = 0
-        streakSmall = 0
+        currentCorrectSmall = 0
         correctSmall = 0
         correctLarge = 0
         percentCorrect = 0.0
         //defaults.set(streakLarge, forKey: keys[difficulty])
-        streakLarge = 0
+        currentCorrecLarge = 0
         start = DispatchTime.now().uptimeNanoseconds
     }
     
