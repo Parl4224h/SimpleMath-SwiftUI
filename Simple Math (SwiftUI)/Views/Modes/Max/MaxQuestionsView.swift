@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MaxQuestionsView: View {
     @EnvironmentObject var brain: MaxBrain
-    
     let questions = [3, 5, 10, 15, 20, 25]
     
     var body: some View {
@@ -18,6 +17,8 @@ struct MaxQuestionsView: View {
                 ForEach(questions, id: \.hashValue) { value in
                     NavigationLink {
                         GameViewMaxQ()
+                            .onAppear(perform: {self.brain.viewAppear(questionNumber: value)})
+                            .onDisappear(perform: {self.brain.viewDisappear()})
                     } label: {
                         Text("\(value) Questions")
                     }

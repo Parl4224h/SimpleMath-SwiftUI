@@ -28,7 +28,7 @@ struct ContentView: View {
                 }
             MaxQuestionsView()
                 .tabItem {
-                    Label("Most Questions Mode", systemImage: "stopwatch")
+                    Label("Speed Mode", systemImage: "stopwatch")
                 }
         }
     }

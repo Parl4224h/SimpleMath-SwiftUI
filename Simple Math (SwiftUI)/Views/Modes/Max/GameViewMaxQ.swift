@@ -13,17 +13,17 @@ struct GameViewMaxQ: View {
     var body: some View {
         ZStack{
             VStack {
-                StatsViewTimed()
+                StatsViewMaxQ()
                     .padding(.bottom,25)
                     .padding(.top, 0)
                 
-                AnswerViewTimed()
+                AnswerViewMaxQ()
                 
                 Spacer()
                 
             }
             if ($brain.endVisible.wrappedValue) {
-                GameOverTimed()
+                GameOverMaxQ()
             }
         }
     }

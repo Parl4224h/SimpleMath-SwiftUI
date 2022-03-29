@@ -10,20 +10,21 @@ import SwiftUI
 
 final class MaxBrain: ObservableObject {
     // MARK: PUBLISHED VARIABLES
-    @Published var timeRemaining = 10
-    @Published var answerText = ""
+    @Published var timeElapsed: Int = 0
+    @Published var answerText: String = ""
     @Published var percentCorrect: Float = 0.0
     @Published var currentCorrectSmall: Int = 0
     @Published var currentCorrecLarge: Int = 0
-    @Published var correctSmall: Int = 0
-    @Published var correctLarge: Int = 0
+    @Published var totalQuestionsSmall: Int = 0
+    @Published var totalQuestionsLarge: Int = 0
     @Published var questionText: String = ""
-    @Published var answerColor = SwiftUI.Color.black
-    @Published var answerTextColor = SwiftUI.Color.white
+    @Published var answerColor: SwiftUI.Color = SwiftUI.Color.black
+    @Published var answerTextColor: SwiftUI.Color = SwiftUI.Color.white
     @Published var difficulty: Difficulty = .easy
     @Published var isVisible: Bool = false
     @Published var isOver: Bool = false
     @Published var endVisible: Bool = false
+    @Published var recordTime: Int = 0
     
     // MARK: PRIVATE VARIABLES
     private var currentRegular:equation?
@@ -31,7 +32,6 @@ final class MaxBrain: ObservableObject {
     private var correct = 0
     private var incorrect = 0
     private var withHint = 0
-    private var start:UInt64
     private var operation = 0
     private var numberOne = 0
     private var numberTwo = 0
@@ -39,10 +39,11 @@ final class MaxBrain: ObservableObject {
     private var hints = 0
     private var hintUsed = false
     private var display: String = ""
-    private var timeRemainingConstant: Int = 0
+    private var totalQuestions = 0
+    private var elapsedQuestions = 0
+    
     
     init() {
-        start = DispatchTime.now().uptimeNanoseconds
         questionText = nextQuestion()
     }
     
@@ -67,7 +68,6 @@ final class MaxBrain: ObservableObject {
     
     public func Submit() {
         if isOver {
-            timeRemaining = timeRemainingConstant
             questionText = nextQuestion()
             reset()
             isOver = false
@@ -83,10 +83,10 @@ final class MaxBrain: ObservableObject {
         endVisible = true
     }
     
-    public func viewAppear(time: Int) {
+    public func viewAppear(questionNumber: Int) {
+        totalQuestions = questionNumber
+        elapsedQuestions = 0
         reset()
-        timeRemaining = time
-        timeRemainingConstant = time
         isVisible = true
         isOver = false
         questionText = nextQuestion()
@@ -94,7 +94,7 @@ final class MaxBrain: ObservableObject {
     
     public func viewDisappear() {
         reset()
-        timeRemaining = 0
+        timeElapsed = 0
         isVisible = false
         questionText = nextQuestion()
     }
@@ -126,6 +126,7 @@ final class MaxBrain: ObservableObject {
                 ans = currentSquare!.answer
             }
             if (a == ans){
+                elapsedQuestions += 1
                 if (hintUsed){
                     withHint += 1
                 } else{
@@ -148,13 +149,21 @@ final class MaxBrain: ObservableObject {
                         remaining -= 0.25
                     }
                 }
-                display = ""
                 hints = 0
                 hintUsed = false
-                correctSmall = correct
-                correctLarge = correct + incorrect + withHint
+                totalQuestionsSmall = correct
+                totalQuestionsLarge = correct + incorrect + withHint
                 percentCorrect = Float(correct) / Float(correct+incorrect+withHint)
-                questionText = nextQuestion()
+                print(totalQuestions)
+                print(elapsedQuestions)
+                if (elapsedQuestions == totalQuestions) {
+                    isOver = true
+                    endVisible = true
+                    questionText = "Press Submit to Play Again"
+                } else {
+                    display = ""
+                    questionText = nextQuestion()
+                }
             } else {
                 currentCorrectSmall = 0
                 answerText = "Incorrect"
@@ -179,13 +188,15 @@ final class MaxBrain: ObservableObject {
         correct = 0
         incorrect = 0
         withHint = 0
+        hints = 0
+        hintUsed = false
         currentCorrectSmall = 0
-        correctSmall = 0
-        correctLarge = 0
+        totalQuestionsSmall = 0
+        totalQuestionsLarge = 0
         percentCorrect = 0.0
         //defaults.set(streakLarge, forKey: keys[difficulty])
         currentCorrecLarge = 0
-        start = DispatchTime.now().uptimeNanoseconds
+        timeElapsed = 0
     }
     
     private func nextQuestion() -> String {

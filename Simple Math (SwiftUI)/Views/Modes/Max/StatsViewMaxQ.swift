@@ -18,7 +18,7 @@ struct StatsViewMaxQ: View {
                 .frame(width: .infinity, height: 75.0)
                 .padding()
             //Correct : Total
-            CircularRatioBar(large: $brain.correctLarge, small: $brain.correctSmall, primaryColor: Color.green, secondayColor: Color.red, delimiter: ":")
+            CircularRatioBar(large: $brain.totalQuestionsLarge, small: $brain.totalQuestionsSmall, primaryColor: Color.green, secondayColor: Color.red, delimiter: ":")
                 .frame(width: .infinity, height: 75.0)
                 .padding()
             //Percent Correct

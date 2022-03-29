@@ -15,10 +15,10 @@ struct GameOverMaxQ: View {
             Text("Game Over")
                 .font(.title)
             
-            Text("Total Questions Answered: \(brain.correctLarge)")
-            Text("Correct Questions: \(brain.correctSmall)")
+            Text("Time: \(brain.timeElapsed) Seconds")
+            Text("Average Time: \(Int(Float(brain.timeElapsed) / Float(brain.totalQuestionsLarge))) Seconds")
+            Text("Record Time: \(brain.recordTime)")
             Text("Longest Streak: \(brain.currentCorrectSmall)")
-            Text("Record Streak: \(brain.currentCorrecLarge)")
             
             Spacer()
             

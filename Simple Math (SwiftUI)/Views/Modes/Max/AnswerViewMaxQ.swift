@@ -37,15 +37,10 @@ struct AnswerViewMaxQ: View {
             }
             .padding()
             
-            Text("Time Remaining: \(brain.timeRemaining < 0 ? 0 : brain.timeRemaining) Seconds")
+            Text("Time Elapsed: \(brain.timeElapsed) Seconds")
                 .onReceive(timer) {_ in
-                    if (brain.timeRemaining > 0){
-                        brain.timeRemaining -= 1
-                    } else if (brain.timeRemaining == 0){
-                        brain.timeRemaining -= 1
-                        if (brain.isVisible) {
-                            brain.gameOver()
-                        }
+                    if (!brain.isOver){
+                        brain.timeElapsed += 1
                     }
                 }
         }

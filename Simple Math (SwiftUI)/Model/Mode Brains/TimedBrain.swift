@@ -26,6 +26,7 @@ final class TimedBrain: ObservableObject {
     @Published var isVisible: Bool = false
     @Published var isOver: Bool = false
     @Published var endVisible: Bool = false
+    @Published var recordQuestions: Int = 1
     
     // MARK: PRIVATE VARIABLES
     private var currentRegular:equation?
@@ -182,6 +183,9 @@ final class TimedBrain: ObservableObject {
         incorrect = 0
         withHint = 0
         currentCorrectSmall = 0
+        withHint = 0
+        hints = 0
+        hintUsed = false
         correctSmall = 0
         correctLarge = 0
         percentCorrect = 0.0
