@@ -16,6 +16,10 @@
 		AB2C91AC27ECBC2000D21A3E /* GameViewTimed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C91AB27ECBC2000D21A3E /* GameViewTimed.swift */; };
 		AB2C91AE27ECBCBB00D21A3E /* GameOverTimed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C91AD27ECBCBB00D21A3E /* GameOverTimed.swift */; };
 		AB2EF9A027E214CC007AD225 /* EndlessBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2EF99F27E214CC007AD225 /* EndlessBrain.swift */; };
+		AB34EF2B27F3777D003EA7EE /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB34EF2A27F3777D003EA7EE /* ModelData.swift */; };
+		AB34EF2E27F49FFA003EA7EE /* maxData.json in Resources */ = {isa = PBXBuildFile; fileRef = AB34EF2D27F49FFA003EA7EE /* maxData.json */; };
+		AB34EF3027F4A17D003EA7EE /* endlessData.json in Resources */ = {isa = PBXBuildFile; fileRef = AB34EF2F27F4A17D003EA7EE /* endlessData.json */; };
+		AB34EF3227F4A184003EA7EE /* timedData.json in Resources */ = {isa = PBXBuildFile; fileRef = AB34EF3127F4A184003EA7EE /* timedData.json */; };
 		AB358CFE27DFB84A00A6DB1F /* AnswerViewEndless.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB358CFD27DFB84A00A6DB1F /* AnswerViewEndless.swift */; };
 		AB358D0027DFB92A00A6DB1F /* StatsViewEndless.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB358CFF27DFB92A00A6DB1F /* StatsViewEndless.swift */; };
 		AB358D0427DFC9A100A6DB1F /* CircularPercentageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB358D0327DFC9A100A6DB1F /* CircularPercentageBar.swift */; };
@@ -44,6 +48,10 @@
 		AB2C91AB27ECBC2000D21A3E /* GameViewTimed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewTimed.swift; sourceTree = "<group>"; };
 		AB2C91AD27ECBCBB00D21A3E /* GameOverTimed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverTimed.swift; sourceTree = "<group>"; };
 		AB2EF99F27E214CC007AD225 /* EndlessBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessBrain.swift; sourceTree = "<group>"; };
+		AB34EF2A27F3777D003EA7EE /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		AB34EF2D27F49FFA003EA7EE /* maxData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = maxData.json; sourceTree = "<group>"; };
+		AB34EF2F27F4A17D003EA7EE /* endlessData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = endlessData.json; sourceTree = "<group>"; };
+		AB34EF3127F4A184003EA7EE /* timedData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timedData.json; sourceTree = "<group>"; };
 		AB358CFD27DFB84A00A6DB1F /* AnswerViewEndless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewEndless.swift; sourceTree = "<group>"; };
 		AB358CFF27DFB92A00A6DB1F /* StatsViewEndless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewEndless.swift; sourceTree = "<group>"; };
 		AB358D0327DFC9A100A6DB1F /* CircularPercentageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularPercentageBar.swift; sourceTree = "<group>"; };
@@ -98,6 +106,16 @@
 			path = Max;
 			sourceTree = "<group>";
 		};
+		AB34EF2C27F49F8E003EA7EE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AB34EF3127F4A184003EA7EE /* timedData.json */,
+				AB34EF2D27F49FFA003EA7EE /* maxData.json */,
+				AB34EF2F27F4A17D003EA7EE /* endlessData.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		AB4B642A27DB97F400ADB13A = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +138,7 @@
 				AB4B643627DB97F400ADB13A /* Simple_Math__SwiftUI_App.swift */,
 				AB4B644427DB98E000ADB13A /* Views */,
 				ABC936D627DFE95900C054E3 /* Model */,
+				AB34EF2C27F49F8E003EA7EE /* Resources */,
 				AB4B643A27DB97F400ADB13A /* Assets.xcassets */,
 				AB4B643C27DB97F400ADB13A /* Preview Content */,
 			);
@@ -171,6 +190,7 @@
 				ABC936D727DFE96F00C054E3 /* Equation.swift */,
 				ABE241DF27EC9D7300858474 /* Mode Brains */,
 				ABE241E027ECA01600858474 /* UniversalAccess.swift */,
+				AB34EF2A27F3777D003EA7EE /* ModelData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,7 +272,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB34EF3027F4A17D003EA7EE /* endlessData.json in Resources */,
+				AB34EF3227F4A184003EA7EE /* timedData.json in Resources */,
 				AB4B643E27DB97F400ADB13A /* Preview Assets.xcassets in Resources */,
+				AB34EF2E27F49FFA003EA7EE /* maxData.json in Resources */,
 				AB4B643B27DB97F400ADB13A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +295,7 @@
 				ABC936E027E0253300C054E3 /* EndlessView.swift in Sources */,
 				AB08889527F2184B00E12C55 /* StatsViewMaxQ.swift in Sources */,
 				AB2C91AE27ECBCBB00D21A3E /* GameOverTimed.swift in Sources */,
+				AB34EF2B27F3777D003EA7EE /* ModelData.swift in Sources */,
 				AB4B643727DB97F400ADB13A /* Simple_Math__SwiftUI_App.swift in Sources */,
 				AB08889727F218D100E12C55 /* GameOverMaxQ.swift in Sources */,
 				AB5A7C1927EC13BE009C70ED /* TimedView.swift in Sources */,

@@ -13,8 +13,8 @@ final class MaxBrain: ObservableObject {
     @Published var timeElapsed: Int = 0
     @Published var answerText: String = ""
     @Published var percentCorrect: Float = 0.0
-    @Published var currentCorrectSmall: Int = 0
-    @Published var currentCorrecLarge: Int = 0
+    @Published var streakSmall: Int = 0
+    @Published var streakLarge: Int = 0
     @Published var totalQuestionsSmall: Int = 0
     @Published var totalQuestionsLarge: Int = 0
     @Published var questionText: String = ""
@@ -25,6 +25,7 @@ final class MaxBrain: ObservableObject {
     @Published var isOver: Bool = false
     @Published var endVisible: Bool = false
     @Published var recordTime: Int = 0
+    @Published var longStreak: Int = 0
     
     // MARK: PRIVATE VARIABLES
     private var currentRegular:equation?
@@ -131,10 +132,11 @@ final class MaxBrain: ObservableObject {
                     withHint += 1
                 } else{
                     correct += 1
-                    currentCorrectSmall += 1
+                    streakSmall += 1
                 }
-                if(currentCorrectSmall > currentCorrecLarge){
-                    currentCorrecLarge = currentCorrectSmall
+                if(streakSmall > streakLarge){
+                    streakLarge = streakSmall
+                    longStreak = streakLarge
                 }
                 answerText = "Correct"
                 answerColor = SwiftUI.Color.green
@@ -165,7 +167,7 @@ final class MaxBrain: ObservableObject {
                     questionText = nextQuestion()
                 }
             } else {
-                currentCorrectSmall = 0
+                streakSmall = 0
                 answerText = "Incorrect"
                 answerColor = SwiftUI.Color.red
                 answerTextColor = SwiftUI.Color.black
@@ -190,12 +192,12 @@ final class MaxBrain: ObservableObject {
         withHint = 0
         hints = 0
         hintUsed = false
-        currentCorrectSmall = 0
+        streakSmall = 0
         totalQuestionsSmall = 0
         totalQuestionsLarge = 0
         percentCorrect = 0.0
         //defaults.set(streakLarge, forKey: keys[difficulty])
-        currentCorrecLarge = 0
+        streakLarge = 0
         timeElapsed = 0
     }
     

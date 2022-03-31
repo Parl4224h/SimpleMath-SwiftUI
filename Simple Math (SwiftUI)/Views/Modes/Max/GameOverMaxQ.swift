@@ -18,7 +18,7 @@ struct GameOverMaxQ: View {
             Text("Time: \(brain.timeElapsed) Seconds")
             Text("Average Time: \(Int(Float(brain.timeElapsed) / Float(brain.totalQuestionsLarge))) Seconds")
             Text("Record Time: \(brain.recordTime)")
-            Text("Longest Streak: \(brain.currentCorrectSmall)")
+            Text("Longest Streak: \(brain.streakSmall)")
             
             Spacer()
             

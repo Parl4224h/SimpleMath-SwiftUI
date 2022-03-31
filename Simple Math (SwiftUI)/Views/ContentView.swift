@@ -31,6 +31,7 @@ struct ContentView: View {
                     Label("Speed Mode", systemImage: "stopwatch")
                 }
         }
+        .onAppear(perform: {ModelData().saveAll()})
     }
 }
 

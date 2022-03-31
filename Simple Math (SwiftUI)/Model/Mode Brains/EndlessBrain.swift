@@ -36,6 +36,7 @@ final class EndlessBrain: ObservableObject {
     private var hints = 0
     private var hintUsed = false
     private var display:String = ""
+    private var modelData = ModelData()
     
     init(){
         start = DispatchTime.now().uptimeNanoseconds
@@ -47,7 +48,7 @@ final class EndlessBrain: ObservableObject {
         reset()
         difficulty = diff
         questionText = nextQuestion()
-        streakLarge = defaults.integer(forKey: keysEndless[difficulty])
+        streakLarge = modelData.endlessBests[difficulty]
     }
     
     public func Hint() {
@@ -76,7 +77,8 @@ final class EndlessBrain: ObservableObject {
         correctSmall = 0
         correctLarge = 0
         percentCorrect = 0.0
-        defaults.set(streakLarge, forKey: keysEndless[difficulty])
+        modelData.endlessBests[difficulty] = streakLarge
+        modelData.saveEndless()
         streakLarge = 0
         start = DispatchTime.now().uptimeNanoseconds
         responseTime = 0
@@ -116,7 +118,8 @@ final class EndlessBrain: ObservableObject {
                 }
                 if(streakSmall > streakLarge){
                     streakLarge = streakSmall
-                    defaults.set(streakLarge, forKey: keysEndless[difficulty])
+                    modelData.endlessBests[difficulty] = streakLarge
+                    modelData.saveEndless()
                 }
                 answerText = "Correct"
                 answerColor = SwiftUI.Color.green
