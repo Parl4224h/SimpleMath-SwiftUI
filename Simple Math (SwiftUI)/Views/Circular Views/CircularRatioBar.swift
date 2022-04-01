@@ -11,7 +11,7 @@ struct CircularRatioBar: View {
     @Binding var large: Int
     @Binding var small: Int
     var primaryColor: Color
-    var secondayColor: Color
+    var secondaryColor: Color
     var delimiter: String
     
     
@@ -19,7 +19,7 @@ struct CircularRatioBar: View {
         ZStack {
             Circle()
                 .stroke(lineWidth: 20.0)
-                .foregroundColor(secondayColor)
+                .foregroundColor(secondaryColor)
             
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(Float(small)/Float(large), 1.0)))
@@ -35,6 +35,6 @@ struct CircularRatioBar: View {
 
 struct CircularRatioBar_Previews: PreviewProvider {
     static var previews: some View {
-        CircularRatioBar(large: .constant(12), small: .constant(6), primaryColor: Color.green, secondayColor: Color.red, delimiter: ":")
+        CircularRatioBar(large: .constant(12), small: .constant(6), primaryColor: Color.green, secondaryColor: Color.red, delimiter: ":")
     }
 }

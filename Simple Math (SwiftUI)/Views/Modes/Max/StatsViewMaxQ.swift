@@ -14,11 +14,11 @@ struct StatsViewMaxQ: View {
         
         HStack (alignment: .center){
             // Streak
-            CircularRatioBar(large: $brain.streakLarge, small: $brain.streakSmall, primaryColor: Color.accentColor, secondayColor: Color.gray, delimiter: ":")
+            CircularRatioBar(large: $brain.streakLarge, small: $brain.streakSmall, primaryColor: Color.accentColor, secondaryColor: Color.gray, delimiter: ":")
                 .frame(width: .infinity, height: 75.0)
                 .padding()
             //Correct : Total
-            CircularRatioBar(large: $brain.totalQuestionsLarge, small: $brain.totalQuestionsSmall, primaryColor: Color.green, secondayColor: Color.red, delimiter: ":")
+            CircularRatioBar(large: $brain.totalQuestionsLarge, small: $brain.totalQuestionsSmall, primaryColor: Color.green, secondaryColor: Color.red, delimiter: ":")
                 .frame(width: .infinity, height: 75.0)
                 .padding()
             //Percent Correct

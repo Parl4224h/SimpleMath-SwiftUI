@@ -13,11 +13,11 @@ struct StatsViewEndless: View {
     var body: some View {
         
         HStack (alignment: .center){
-            CircularRatioBar(large: $brain.streakLarge, small: $brain.streakSmall, primaryColor: Color.accentColor, secondayColor: Color.gray, delimiter: ":")
+            CircularRatioBar(large: $brain.streakLarge, small: $brain.streakSmall, primaryColor: Color.accentColor, secondaryColor: Color.gray, delimiter: ":")
                 .frame(width: .infinity, height: 75.0)
                 .padding()
             
-            CircularRatioBar(large: $brain.correctLarge, small: $brain.correctSmall, primaryColor: Color.green, secondayColor: Color.red, delimiter: ":")
+            CircularRatioBar(large: $brain.correctLarge, small: $brain.correctSmall, primaryColor: Color.green, secondaryColor: Color.red, delimiter: ":")
                 .frame(width: .infinity, height: 75.0)
                 .padding()
             

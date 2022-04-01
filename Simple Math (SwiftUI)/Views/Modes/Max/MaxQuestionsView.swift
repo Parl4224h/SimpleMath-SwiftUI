@@ -17,8 +17,8 @@ struct MaxQuestionsView: View {
                 ForEach(questions, id: \.hashValue) { value in
                     NavigationLink {
                         GameViewMaxQ()
-                            .onAppear(perform: {self.brain.viewAppear(questionNumber: value)})
-                            .onDisappear(perform: {self.brain.viewDisappear()})
+                            .onAppear(perform: {brain.viewAppear(questionNumber: value)})
+                            .onDisappear(perform: {brain.viewDisappear()})
                     } label: {
                         Text("\(value) Questions")
                     }
