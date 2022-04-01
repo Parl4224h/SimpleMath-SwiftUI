@@ -18,7 +18,7 @@ struct GameOverTimed: View {
             Text("Total Questions Answered: \(brain.correctLarge)")
             Text("Record Questions Answered: \(brain.recordQuestions)")
             Text("Longest Streak: \(brain.currentCorrectSmall)")
-            Text("Record Streak: \(brain.currentCorrecLarge)")
+            Text("Record Streak: \(brain.currentCorrectLarge)")
             
             Spacer()
             

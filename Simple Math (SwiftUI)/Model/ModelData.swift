@@ -8,7 +8,11 @@
 import Foundation
 
 enum Difficulty: String, CaseIterable, Identifiable {
-    case easy, medium, hard, squares, extreme
+    case easy
+    case medium
+    case hard
+    case squares
+    case extreme
     var id: Self { self }
 }
 
@@ -20,12 +24,15 @@ final class ModelData: ObservableObject {
     private let manager = FileManager.default
     
     func saveEndless() {
-        print(endlessBests)
         save("endlessData", endlessBests)
     }
     
-    func saveAll() {
-        
+    func saveTimed() {
+        save("timedData", timedBests)
+    }
+    
+    func saveMax() {
+        save("maxData", maxBests)
     }
     
     func save(_ filename: String, _ array: [Int]) {
@@ -60,7 +67,7 @@ func load (_ filename: String) -> [Int]{
                     }
                 }
             } catch {
-                print("initializing files")
+                print("Files already initialized")
             }
         }
     
@@ -70,7 +77,6 @@ func load (_ filename: String) -> [Int]{
         do {
             let data = try(Data(contentsOf: fileURL))
             let array = try JSONSerialization.jsonObject(with: data) as? [Int]
-            print(array!)
             if (array! != []) {
                 return array!
             } else {

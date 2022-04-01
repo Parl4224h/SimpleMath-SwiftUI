@@ -77,8 +77,6 @@ final class EndlessBrain: ObservableObject {
         correctSmall = 0
         correctLarge = 0
         percentCorrect = 0.0
-        modelData.endlessBests[difficulty] = streakLarge
-        modelData.saveEndless()
         streakLarge = 0
         start = DispatchTime.now().uptimeNanoseconds
         responseTime = 0

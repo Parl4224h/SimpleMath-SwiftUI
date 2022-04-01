@@ -42,6 +42,9 @@ final class MaxBrain: ObservableObject {
     private var display: String = ""
     private var totalQuestions = 0
     private var elapsedQuestions = 0
+    private var modelData = ModelData()
+    private var diffInt = 0
+    private var qInt = 0
     
     
     init() {
@@ -91,6 +94,23 @@ final class MaxBrain: ObservableObject {
         isVisible = true
         isOver = false
         questionText = nextQuestion()
+        switch(difficulty){
+        case Difficulty.easy: diffInt = 0
+        case Difficulty.medium: diffInt = 1
+        case Difficulty.hard: diffInt = 2
+        case Difficulty.squares: diffInt = 3
+        case Difficulty.extreme: diffInt = 4
+        }
+        switch(questionNumber) {
+        case 3: qInt = 0
+        case 5: qInt = 1
+        case 10: qInt = 2
+        case 15: qInt = 3
+        case 20: qInt = 4
+        case 25: qInt = 5
+        default: qInt = 0
+        }
+        streakLarge = modelData.maxBests[diffInt + (5*qInt)]
     }
     
     public func viewDisappear() {
@@ -136,7 +156,11 @@ final class MaxBrain: ObservableObject {
                 }
                 if(streakSmall > streakLarge){
                     streakLarge = streakSmall
-                    longStreak = streakLarge
+                    modelData.maxBests[qInt + (5 * diffInt)] = streakLarge
+                    modelData.saveMax()
+                }
+                if(streakSmall > longStreak) {
+                    longStreak = streakSmall
                 }
                 answerText = "Correct"
                 answerColor = SwiftUI.Color.green
@@ -156,8 +180,6 @@ final class MaxBrain: ObservableObject {
                 totalQuestionsSmall = correct
                 totalQuestionsLarge = correct + incorrect + withHint
                 percentCorrect = Float(correct) / Float(correct+incorrect+withHint)
-                print(totalQuestions)
-                print(elapsedQuestions)
                 if (elapsedQuestions == totalQuestions) {
                     isOver = true
                     endVisible = true

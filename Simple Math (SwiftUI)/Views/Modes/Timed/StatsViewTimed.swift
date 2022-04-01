@@ -14,7 +14,7 @@ struct StatsViewTimed: View {
         
         HStack (alignment: .center){
             // Streak
-            CircularRatioBar(large: $brain.currentCorrecLarge, small: $brain.currentCorrectSmall, primaryColor: Color.accentColor, secondayColor: Color.gray, delimiter: ":")
+            CircularRatioBar(large: $brain.currentCorrectLarge, small: $brain.currentCorrectSmall, primaryColor: Color.accentColor, secondayColor: Color.gray, delimiter: ":")
                 .frame(width: .infinity, height: 75.0)
                 .padding()
             //Correct : Total

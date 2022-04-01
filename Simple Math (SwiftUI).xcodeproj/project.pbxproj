@@ -34,7 +34,6 @@
 		ABC936E027E0253300C054E3 /* EndlessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC936DF27E0253300C054E3 /* EndlessView.swift */; };
 		ABE241DC27EC9D5E00858474 /* TimedBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE241DB27EC9D5E00858474 /* TimedBrain.swift */; };
 		ABE241DE27EC9D6900858474 /* MaxBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE241DD27EC9D6900858474 /* MaxBrain.swift */; };
-		ABE241E127ECA01600858474 /* UniversalAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE241E027ECA01600858474 /* UniversalAccess.swift */; };
 		ABE241E427ECA6AA00858474 /* GameViewEndless.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE241E327ECA6AA00858474 /* GameViewEndless.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +66,6 @@
 		ABC936DF27E0253300C054E3 /* EndlessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessView.swift; sourceTree = "<group>"; };
 		ABE241DB27EC9D5E00858474 /* TimedBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedBrain.swift; sourceTree = "<group>"; };
 		ABE241DD27EC9D6900858474 /* MaxBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBrain.swift; sourceTree = "<group>"; };
-		ABE241E027ECA01600858474 /* UniversalAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalAccess.swift; sourceTree = "<group>"; };
 		ABE241E327ECA6AA00858474 /* GameViewEndless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewEndless.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,7 +187,6 @@
 			children = (
 				ABC936D727DFE96F00C054E3 /* Equation.swift */,
 				ABE241DF27EC9D7300858474 /* Mode Brains */,
-				ABE241E027ECA01600858474 /* UniversalAccess.swift */,
 				AB34EF2A27F3777D003EA7EE /* ModelData.swift */,
 			);
 			path = Model;
@@ -304,7 +301,6 @@
 				AB5A7C1D27EC14E6009C70ED /* MaxQuestionsView.swift in Sources */,
 				AB08889327F215CC00E12C55 /* AnswerViewMaxQ.swift in Sources */,
 				AB358D0427DFC9A100A6DB1F /* CircularPercentageBar.swift in Sources */,
-				ABE241E127ECA01600858474 /* UniversalAccess.swift in Sources */,
 				AB358CFE27DFB84A00A6DB1F /* AnswerViewEndless.swift in Sources */,
 				AB2C91AA27ECBB3E00D21A3E /* StatsViewTimed.swift in Sources */,
 				ABE241DC27EC9D5E00858474 /* TimedBrain.swift in Sources */,
