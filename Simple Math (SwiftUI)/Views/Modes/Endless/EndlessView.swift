@@ -45,6 +45,7 @@ struct EndlessView: View {
                 }
             }
             .navigationTitle("Endless Modes")
+            .listStyle(PlainListStyle())
         }
     }
 }
