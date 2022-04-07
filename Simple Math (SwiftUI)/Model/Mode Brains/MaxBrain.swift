@@ -111,6 +111,7 @@ final class MaxBrain: ObservableObject {
         default: qInt = 0
         }
         streakLarge = modelData.maxBests[diffInt + (5*qInt)]
+        questionText = nextQuestion()
     }
     
     public func viewDisappear() {
@@ -218,7 +219,6 @@ final class MaxBrain: ObservableObject {
         totalQuestionsSmall = 0
         totalQuestionsLarge = 0
         percentCorrect = 0.0
-        //defaults.set(streakLarge, forKey: keys[difficulty])
         streakLarge = 0
         timeElapsed = 0
     }

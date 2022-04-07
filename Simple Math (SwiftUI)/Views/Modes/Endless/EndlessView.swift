@@ -10,41 +10,31 @@ import SwiftUI
 struct EndlessView: View {
     @EnvironmentObject var brain: EndlessBrain
     
+    let gModes = [Difficulty.easy, Difficulty.medium, Difficulty.hard, Difficulty.squares, Difficulty.extreme]
+    
     var body: some View {
         NavigationView {
-            List{
-                NavigationLink {
-                    GameViewEndless()
-                        .onAppear(perform: {brain.setDifficulty(0)})
-                } label: {
-                    Text("Easy")
+            VStack{
+                Text("Endless Modes")
+                    .font(.largeTitle)
+                ForEach(gModes) {gMode in
+                    NavigationLink {
+                        GameViewEndless()
+                            .onAppear(perform: {brain.viewAppear()})
+                            .onDisappear(perform: {brain.viewDisappear()})
+                    } label: {
+                        HStack{
+                            Text("\(gMode.rawValue.capitalized)")
+                                .foregroundColor(Color("\(gMode.rawValue)Text"))
+                        }
+                        .frame(width: 200)
+                        .padding()
+                        .background(Color(gMode.rawValue))
+                        .cornerRadius(20)
+                    }
                 }
-                NavigationLink {
-                    GameViewEndless()
-                        .onAppear(perform: {brain.setDifficulty(1)})
-                } label: {
-                    Text("Medium")
-                }
-                NavigationLink {
-                    GameViewEndless()
-                        .onAppear(perform: {brain.setDifficulty(2)})
-                } label: {
-                    Text("Hard")
-                }
-                NavigationLink {
-                    GameViewEndless()
-                        .onAppear(perform: {brain.setDifficulty(3)})
-                } label: {
-                    Text("Squares")
-                }
-                NavigationLink {
-                    GameViewEndless()
-                        .onAppear(perform: {brain.setDifficulty(4)})
-                } label: {
-                    Text("Extreme")
-                }
+                Spacer()
             }
-            .navigationTitle("Endless Modes")
             .listStyle(PlainListStyle())
         }
     }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB082B1F27FA1EFD0018F301 /* nospaceTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB082B1E27FA1EFD0018F301 /* nospaceTags.swift */; };
 		AB082B2127FA1F420018F301 /* NoSpaceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB082B2027FA1F420018F301 /* NoSpaceList.swift */; };
 		AB08889127F2087800E12C55 /* GameViewMaxQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08889027F2087800E12C55 /* GameViewMaxQ.swift */; };
 		AB08889327F215CC00E12C55 /* AnswerViewMaxQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08889227F215CC00E12C55 /* AnswerViewMaxQ.swift */; };
@@ -40,7 +39,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AB082B1E27FA1EFD0018F301 /* nospaceTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nospaceTags.swift; sourceTree = "<group>"; };
 		AB082B2027FA1F420018F301 /* NoSpaceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSpaceList.swift; sourceTree = "<group>"; };
 		AB08889027F2087800E12C55 /* GameViewMaxQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewMaxQ.swift; sourceTree = "<group>"; };
 		AB08889227F215CC00E12C55 /* AnswerViewMaxQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewMaxQ.swift; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 				AB358CFD27DFB84A00A6DB1F /* AnswerViewEndless.swift */,
 				AB358CFF27DFB92A00A6DB1F /* StatsViewEndless.swift */,
 				ABE241E327ECA6AA00858474 /* GameViewEndless.swift */,
-				AB082B1E27FA1EFD0018F301 /* nospaceTags.swift */,
 				AB082B2027FA1F420018F301 /* NoSpaceList.swift */,
 			);
 			path = Endless;
@@ -304,7 +301,6 @@
 				AB5A7C1927EC13BE009C70ED /* TimedView.swift in Sources */,
 				ABE241DE27EC9D6900858474 /* MaxBrain.swift in Sources */,
 				AB2EF9A027E214CC007AD225 /* EndlessBrain.swift in Sources */,
-				AB082B1F27FA1EFD0018F301 /* nospaceTags.swift in Sources */,
 				AB5A7C1D27EC14E6009C70ED /* MaxQuestionsView.swift in Sources */,
 				AB08889327F215CC00E12C55 /* AnswerViewMaxQ.swift in Sources */,
 				AB358D0427DFC9A100A6DB1F /* CircularPercentageBar.swift in Sources */,

@@ -20,9 +20,9 @@ final class EndlessBrain: ObservableObject {
     @Published var questionText: String = ""
     @Published var answerColor = SwiftUI.Color.black
     @Published var answerTextColor = SwiftUI.Color.white
+    @Published var difficulty: Difficulty = Difficulty.easy
     
     // MARK: PRIVATE VARIABLES
-    private var difficulty:Int = 1
     private var currentRegular:equation?
     private var currentSquare:squares?
     private var correct = 0
@@ -37,6 +37,7 @@ final class EndlessBrain: ObservableObject {
     private var hintUsed = false
     private var display:String = ""
     private var modelData = ModelData()
+    private var diffInt = 0
     
     init(){
         start = DispatchTime.now().uptimeNanoseconds
@@ -44,13 +45,6 @@ final class EndlessBrain: ObservableObject {
     }
     
     // MARK: PUBLIC FUNCTIONS
-    public func setDifficulty(_ diff: Int){
-        reset()
-        difficulty = diff
-        questionText = nextQuestion()
-        streakLarge = modelData.endlessBests[difficulty]
-    }
-    
     public func Hint() {
         answerText = useHint()
         var remaining = 2.0
@@ -62,6 +56,24 @@ final class EndlessBrain: ObservableObject {
                 remaining -= 0.25
             }
         }
+    }
+    
+    public func viewAppear() {
+        reset()
+        switch(difficulty){
+        case Difficulty.easy: diffInt = 0
+        case Difficulty.medium: diffInt = 1
+        case Difficulty.hard: diffInt = 2
+        case Difficulty.squares: diffInt = 3
+        case Difficulty.extreme: diffInt = 4
+        }
+        questionText = nextQuestion()
+        streakLarge = modelData.endlessBests[diffInt]
+    }
+    
+    public func viewDisappear() {
+        reset()
+        questionText = nextQuestion()
     }
     
     public func Submit() {
@@ -116,7 +128,7 @@ final class EndlessBrain: ObservableObject {
                 }
                 if(streakSmall > streakLarge){
                     streakLarge = streakSmall
-                    modelData.endlessBests[difficulty] = streakLarge
+                    modelData.endlessBests[diffInt] = streakLarge
                     modelData.saveEndless()
                 }
                 answerText = "Correct"
@@ -172,12 +184,11 @@ final class EndlessBrain: ObservableObject {
     
     private func nextQuestion() -> String {
         switch(difficulty) {
-        case 0: return easyQuestion()
-        case 1: return mediumQuestion()
-        case 2: return hardQuestion()
-        case 3: return squareQuestion()
-        case 4: return extremeQuestion()
-        default: return easyQuestion()
+        case Difficulty.easy: return easyQuestion()
+        case Difficulty.medium: return mediumQuestion()
+        case Difficulty.hard: return hardQuestion()
+        case Difficulty.squares: return squareQuestion()
+        case Difficulty.extreme: return extremeQuestion()
         }
     }
     

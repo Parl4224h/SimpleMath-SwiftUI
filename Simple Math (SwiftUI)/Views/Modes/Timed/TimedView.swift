@@ -10,22 +10,31 @@ import SwiftUI
 struct TimedView: View {
     @EnvironmentObject var brain: TimedBrain
     
-    let times = [10, 20, 30, 40, 50, 60]
+    let times = [Times.ten, Times.twenty, Times.thirty, Times.forty, Times.fifty, Times.sixty]
     
     var body: some View {
         NavigationView{
-            List{
-                ForEach(times, id: \.hashValue) { value in
+            VStack {
+                Text("Timed Modes")
+                    .font(.largeTitle)
+                ForEach(times) {time in
                     NavigationLink {
                         GameViewTimed()
-                            .onAppear(perform: {brain.viewAppear(time: value)})
+                            .onAppear(perform: {brain.viewAppear(time: time.rawValue)})
                             .onDisappear(perform: {brain.viewDisappear()})
                     } label: {
-                        Text("\(value) Seconds")
+                        HStack{
+                            Text("\(time.rawValue) Seconds")
+                                .foregroundColor(Color("Background"))
+                        }
+                        .frame(width: 200)
+                        .padding()
+                        .background(Color("Text"))
+                        .cornerRadius(20)
                     }
                 }
+                Spacer()
             }
-            .navigationTitle("Time")
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
                     Picker("Difficulty",selection: $brain.difficulty){
@@ -33,6 +42,12 @@ struct TimedView: View {
                             Text(difficulty.rawValue.capitalized)
                         }
                     }
+                    .onAppear(perform: {
+                        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("Background"))
+                        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color("Text"))], for: .selected)
+                        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color("Background"))], for: .normal)
+                        UISegmentedControl.appearance().backgroundColor = UIColor(Color("Text"))
+                    })
                     .pickerStyle(.segmented)
                 }
             }

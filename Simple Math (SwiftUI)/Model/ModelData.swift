@@ -16,6 +16,26 @@ enum Difficulty: String, CaseIterable, Identifiable {
     var id: Self { self }
 }
 
+enum Times: Int, CaseIterable, Identifiable {
+    case ten = 10
+    case twenty = 20
+    case thirty = 30
+    case forty = 40
+    case fifty = 50
+    case sixty = 60
+    var id: Self { self }
+}
+
+enum Questions: Int, CaseIterable, Identifiable {
+    case three = 3
+    case five = 5
+    case ten = 10
+    case fifteen = 15
+    case twenty = 20
+    case twentyFive = 25
+    var id: Self { self }
+}
+
 final class ModelData: ObservableObject {
     @Published var maxBests: [Int] = load("maxData")
     @Published var timedBests: [Int] = load("timedData")
