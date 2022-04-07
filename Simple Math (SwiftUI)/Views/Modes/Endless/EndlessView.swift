@@ -20,7 +20,10 @@ struct EndlessView: View {
                 ForEach(gModes) {gMode in
                     NavigationLink {
                         GameViewEndless()
-                            .onAppear(perform: {brain.viewAppear()})
+                            .onAppear(perform: {
+                                brain.setDifficulty(gMode)
+                                brain.viewAppear()
+                            })
                             .onDisappear(perform: {brain.viewDisappear()})
                     } label: {
                         HStack{

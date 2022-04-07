@@ -18,7 +18,7 @@ struct MaxQuestionsView: View {
                     .font(.largeTitle)
                 ForEach(questions) {question in
                     NavigationLink {
-                        GameViewTimed()
+                        GameViewMaxQ()
                             .onAppear(perform: {brain.viewAppear(questionNumber: question.rawValue)})
                             .onDisappear(perform: {brain.viewDisappear()})
                     } label: {

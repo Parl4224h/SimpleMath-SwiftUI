@@ -93,7 +93,6 @@ final class MaxBrain: ObservableObject {
         reset()
         isVisible = true
         isOver = false
-        questionText = nextQuestion()
         switch(difficulty){
         case Difficulty.easy: diffInt = 0
         case Difficulty.medium: diffInt = 1

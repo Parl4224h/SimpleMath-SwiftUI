@@ -20,7 +20,6 @@ final class EndlessBrain: ObservableObject {
     @Published var questionText: String = ""
     @Published var answerColor = SwiftUI.Color.black
     @Published var answerTextColor = SwiftUI.Color.white
-    @Published var difficulty: Difficulty = Difficulty.easy
     
     // MARK: PRIVATE VARIABLES
     private var currentRegular:equation?
@@ -38,6 +37,7 @@ final class EndlessBrain: ObservableObject {
     private var display:String = ""
     private var modelData = ModelData()
     private var diffInt = 0
+    private var difficulty: Difficulty = Difficulty.easy
     
     init(){
         start = DispatchTime.now().uptimeNanoseconds
@@ -45,6 +45,10 @@ final class EndlessBrain: ObservableObject {
     }
     
     // MARK: PUBLIC FUNCTIONS
+    public func setDifficulty(_ diff: Difficulty) {
+        difficulty = diff
+    }
+    
     public func Hint() {
         answerText = useHint()
         var remaining = 2.0
