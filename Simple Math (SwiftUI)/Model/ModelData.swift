@@ -113,3 +113,97 @@ func load (_ filename: String) -> [Int]{
     
     return [0]
 }
+
+class QuestionGeneration {
+    private var operation = 0
+    private var numberOne = 0
+    private var numberTwo = 0
+    private var valid = false
+    
+    public func easyQuestion() -> equation{
+        operation = Int.random(in: 0...3)
+        if (operation == 0){
+            numberOne = Int.random(in: 1...50)
+            numberTwo = Int.random(in: 1...50)
+        } else if (operation == 1){
+            numberOne = Int.random(in: 1...50)
+            numberTwo = Int.random(in: 1...numberOne)
+        } else if (operation == 2){
+            numberOne = Int.random(in: 1...8)
+            numberTwo = Int.random(in: 1...8)
+        } else{
+            numberTwo = Int.random(in: 1...8)
+            valid = false
+            while !valid {
+                numberOne = Int.random(in: 16...64)
+                if (numberOne % numberTwo == 0){
+                    valid = true
+                }
+            }
+        }
+        let currentRegular = equation.init(operation: operation, numberOne: numberOne, numberTwo: numberTwo)
+        return currentRegular
+    }
+    
+    public func mediumQuestion() -> equation{
+        operation = Int.random(in: 0...3)
+        if (operation == 0){
+            numberOne = Int.random(in: 51...250)
+            numberTwo = Int.random(in: 51...250)
+        } else if (operation == 1){
+            numberOne = Int.random(in: 51...250)
+            numberTwo = Int.random(in: 51...numberOne)
+        } else if (operation == 2){
+            numberOne = Int.random(in: 9...12)
+            numberTwo = Int.random(in: 9...12)
+        } else{
+            numberTwo = Int.random(in: 1...12)
+            valid = false
+            while !valid {
+                numberOne = Int.random(in: 72...144)
+                if (numberOne % numberTwo == 0){
+                    valid = true
+                }
+            }
+        }
+        let currentRegular = equation.init(operation: operation, numberOne: numberOne, numberTwo: numberTwo)
+        return currentRegular
+    }
+    
+    public func hardQuestion() -> equation{
+        operation = Int.random(in: 0...3)
+        if (operation == 0){
+            numberOne = Int.random(in: 251...999)
+            numberTwo = Int.random(in: 251...999)
+        } else if (operation == 1){
+            numberOne = Int.random(in: 251...999)
+            numberTwo = Int.random(in: 251...numberOne)
+        } else if (operation == 2){
+            numberOne = Int.random(in: 13...25)
+            numberTwo = Int.random(in: 13...25)
+        } else{
+            numberTwo = Int.random(in: 1...25)
+            valid = false
+            while !valid {
+                numberOne = Int.random(in: 250...625)
+                if (numberOne % numberTwo == 0){
+                    valid = true
+                }
+            }
+        }
+        let currentRegular = equation.init(operation: operation, numberOne: numberOne, numberTwo: numberTwo)
+        return currentRegular
+    }
+    
+    public func squareQuestion() -> squares{
+        operation = Int.random(in: 0...1)
+        let number = Int.random(in: 1...25)
+        var currentSquare: squares
+        if (operation == 0){
+            currentSquare = squares.init(operation: operation, numberOne: (number*number))
+        } else {
+            currentSquare = squares.init(operation: operation, numberOne: number)
+        }
+        return currentSquare
+    }
+}

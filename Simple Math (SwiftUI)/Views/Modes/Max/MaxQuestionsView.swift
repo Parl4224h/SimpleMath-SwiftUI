@@ -14,7 +14,7 @@ struct MaxQuestionsView: View {
     var body: some View {
         NavigationView{
             VStack {
-                Text("Timed Modes")
+                Text("Speed Modes")
                     .font(.largeTitle)
                 ForEach(questions) {question in
                     NavigationLink {

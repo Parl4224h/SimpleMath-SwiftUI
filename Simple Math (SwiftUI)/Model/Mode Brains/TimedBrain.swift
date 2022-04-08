@@ -35,15 +35,12 @@ final class TimedBrain: ObservableObject {
     private var incorrect = 0
     private var withHint = 0
     private var start:UInt64
-    private var operation = 0
-    private var numberOne = 0
-    private var numberTwo = 0
-    private var valid = false
     private var hints = 0
     private var hintUsed = false
     private var display: String = ""
     private var timeRemainingConstant: Int = 0
     private var modelData = ModelData()
+    private var generation = QuestionGeneration()
     private var diffInt = 0
     private var timeInt = 0
     
@@ -216,136 +213,41 @@ final class TimedBrain: ObservableObject {
         case Difficulty.extreme: return extremeQuestion()
         }
     }
-    
-    // MARK: QUESTION GENERATION
-    //Generates questions with the parameters defined in the random based on difficulty/type
+
     private func easyQuestion() -> String{
-        operation = Int.random(in: 0...3)
-        if (operation == 0){
-            numberOne = Int.random(in: 1...50)
-            numberTwo = Int.random(in: 1...50)
-        } else if (operation == 1){
-            numberOne = Int.random(in: 1...50)
-            numberTwo = Int.random(in: 1...numberOne)
-        } else if (operation == 2){
-            numberOne = Int.random(in: 1...8)
-            numberTwo = Int.random(in: 1...8)
-        } else{
-            numberOne = Int.random(in: 1...8)
-            valid = false
-            while !valid {
-                numberTwo = Int.random(in: 1...8)
-                if (numberOne % numberTwo == 0){
-                    valid = true
-                }
-            }
-        }
-        currentRegular = equation.init(operation: operation, numberOne: numberOne, numberTwo: numberTwo)
         currentSquare = nil
+        currentRegular = generation.easyQuestion()
         return currentRegular!.display
     }
     
     private func mediumQuestion() -> String{
-        operation = Int.random(in: 0...3)
-        if (operation == 0){
-            numberOne = Int.random(in: 51...250)
-            numberTwo = Int.random(in: 51...250)
-        } else if (operation == 1){
-            numberOne = Int.random(in: 51...250)
-            numberTwo = Int.random(in: 51...numberOne)
-        } else if (operation == 2){
-            numberOne = Int.random(in: 9...12)
-            numberTwo = Int.random(in: 9...12)
-        } else{
-            numberOne = Int.random(in: 9...12)
-            valid = false
-            while !valid {
-                numberTwo = Int.random(in: 1...6)
-                if (numberOne % numberTwo == 0){
-                    valid = true
-                }
-            }
-        }
-        currentRegular = equation.init(operation: operation, numberOne: numberOne, numberTwo: numberTwo)
         currentSquare = nil
+        currentRegular = generation.mediumQuestion()
         return currentRegular!.display
     }
     
     private func hardQuestion() -> String{
-        operation = Int.random(in: 0...3)
-        if (operation == 0){
-            numberOne = Int.random(in: 251...999)
-            numberTwo = Int.random(in: 251...999)
-        } else if (operation == 1){
-            numberOne = Int.random(in: 251...999)
-            numberTwo = Int.random(in: 251...numberOne)
-        } else if (operation == 2){
-            numberOne = Int.random(in: 13...25)
-            numberTwo = Int.random(in: 13...25)
-        } else{
-            numberOne = Int.random(in: 13...25)
-            valid = false
-            while !valid {
-                numberTwo = Int.random(in: 1...12)
-                if (numberOne % numberTwo == 0){
-                    valid = true
-                }
-            }
-        }
-        currentRegular = equation.init(operation: operation, numberOne: numberOne, numberTwo: numberTwo)
         currentSquare = nil
+        currentRegular = generation.hardQuestion()
         return currentRegular!.display
     }
     
     private func squareQuestion() -> String{
-        operation = Int.random(in: 0...1)
-        let number = Int.random(in: 1...25)
-        if (operation == 0){
-            currentSquare = squares.init(operation: operation, numberOne: (number*number))
-        } else {
-            currentSquare = squares.init(operation: operation, numberOne: number)
-        }
         currentRegular = nil
+        currentSquare = generation.squareQuestion()
         return currentSquare!.display
     }
     
     private func extremeQuestion() -> String{
-        operation = Int.random(in: 0...5)
-        let number = Int.random(in: 1...25)
-        var text: String
-        if (operation == 0){
-            currentSquare = squares.init(operation: operation, numberOne: (number*number))
-            currentRegular = nil
-            text = currentSquare!.display
-        } else if (operation == 1){
-            currentSquare = squares.init(operation: operation, numberOne: number)
-            currentRegular = nil
-            text = currentSquare!.display
-        } else {
-            if (operation == 2){
-                numberOne = Int.random(in: 251...999)
-                numberTwo = Int.random(in: 251...999)
-            } else if (operation == 3){
-                numberOne = Int.random(in: 251...999)
-                numberTwo = Int.random(in: 251...numberOne)
-            } else if (operation == 4){
-                numberOne = Int.random(in: 13...25)
-                numberTwo = Int.random(in: 13...25)
-            } else{
-                numberOne = Int.random(in: 13...25)
-                valid = false
-                while !valid {
-                    numberTwo = Int.random(in: 1...12)
-                    if (numberOne % numberTwo == 0){
-                        valid = true
-                    }
-                }
-            }
-            currentRegular = equation.init(operation: (operation-2), numberOne: numberOne, numberTwo: numberTwo)
+        if (Int.random(in: 0...1) == 0){
             currentSquare = nil
-            text = currentRegular!.display
+            currentRegular = generation.hardQuestion()
+            return currentRegular!.display
+        } else {
+            currentRegular = nil
+            currentSquare = generation.squareQuestion()
+            return currentSquare!.display
         }
-        return text
     }
     
     private func useHint() -> String{
