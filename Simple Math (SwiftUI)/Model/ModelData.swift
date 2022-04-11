@@ -65,7 +65,7 @@ final class ModelData: ObservableObject {
                 let data = try JSONSerialization.data(withJSONObject: array, options: [.prettyPrinted])
                 try data.write(to: fileURL, options: [])
             } catch {
-                fatalError("Couldn't serialize data or write data\n\(error)")
+                print("error in saivng files")
             }
         }
     }
@@ -107,7 +107,7 @@ func load (_ filename: String) -> [Int]{
                 }
             }
         } catch {
-            fatalError("Couldn't load data\n\(error)")
+            print("error loading data arrays initialized to 0")
         }
     }
     
